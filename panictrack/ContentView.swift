@@ -7,71 +7,84 @@
 
 import SwiftUI
 
+#if os(iOS)
+import UIKit
+#endif
+
 struct ContentView: View {
-    @StateObject private var panicStore = PanicStore()
-    @State private var selectedTimeRange = TimeRange.today
+    @ObservedObject var panicStore: PanicStore
+    @State private var particles: [(id: UUID, emoji: String)] = []
+    @State private var showingHelp = false
     
-    enum TimeRange {
-        case today, week, month
+    private let emojis = ["😫"]
+    
+    private func showEmoji() {
+        let emoji = emojis.randomElement() ?? "😫"
+        let particle = (id: UUID(), emoji: emoji)
+        particles.append(particle)
         
-        var title: String {
-            switch self {
-            case .today: return "今天"
-            case .week: return "本週"
-            case .month: return "本月"
-            }
+        // 0.5秒後移除 emoji
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+            particles.removeAll { $0.id == particle.id }
         }
-    }
-    
-    var todayEntries: [PanicEntry] {
-        panicStore.entriesForDate(Date())
-    }
-    
-    var weekEntries: [PanicEntry] {
-        panicStore.entriesForLastNDays(7)
-    }
-    
-    var monthEntries: [PanicEntry] {
-        panicStore.entriesForLastNDays(30)
     }
     
     var body: some View {
         NavigationView {
-        ZStack {
-            Color(.systemBackground)
-                .ignoresSafeArea()
-            
-            VStack(spacing: 20) {
-                Picker("Time Range", selection: $selectedTimeRange) {
-                    Text(TimeRange.today.title).tag(TimeRange.today)
-                    Text(TimeRange.week.title).tag(TimeRange.week)
-                    Text(TimeRange.month.title).tag(TimeRange.month)
+            ZStack {
+                Color(.systemBackground)
+                    .ignoresSafeArea()
+                
+                VStack(spacing: 0) {
+                    Spacer()
+                    
+                    // 按鈕和統計資訊的容器
+                    ZStack {
+                        // 顯示所有 emoji 粒子
+                        ForEach(particles, id: \.id) { particle in
+                            EmojiParticle(emoji: particle.emoji)
+                        }
+                        
+                        // 固定的按鈕和統計資訊
+                        VStack(spacing: 0) {
+                            PanicButton {
+                                showEmoji()
+                                panicStore.addEntry()
+                                let generator = UIImpactFeedbackGenerator(style: .heavy)
+                                generator.impactOccurred()
+                            }
+                            .padding(.horizontal)
+                            
+                            Spacer()
+                            
+                            StatsView(
+                                todayCount: panicStore.entriesForDate(Date()).count,
+                                weekCount: panicStore.entriesForLastNDays(7).count
+                            )
+                            .padding(.bottom)
+                        }
+                    }
                 }
-                .pickerStyle(.segmented)
-                .padding()
-                
-                Spacer()
-                
-                PanicButton {
-                    panicStore.addEntry()
-                    // TODO: Add haptic feedback
-                }
-                .padding()
-                
-                Spacer()
-                
-                StatsView(
-                    todayCount: todayEntries.count,
-                    weekCount: weekEntries.count
-                )
-                    .padding(.bottom)
-            }
             }
             .navigationTitle("焦慮戳戳樂")
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button {
+                        showingHelp = true
+                    } label: {
+                        Image(systemName: "info.circle")
+                            .foregroundColor(.white)
+                    }
+                }
+            }
+            .sheet(isPresented: $showingHelp) {
+                HelpView()
+            }
+            .tint(.white)
         }
     }
 }
 
 #Preview {
-    ContentView()
+    ContentView(panicStore: PanicStore())
 }

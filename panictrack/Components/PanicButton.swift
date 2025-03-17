@@ -16,7 +16,7 @@ struct PanicButton: View {
                 }
             }
         }) {
-            Text("我好焦慮啊啊啊啊啊！")
+            Text("我好焦慮啊！")
                 .font(.system(size: 24, weight: .bold))
                 .foregroundColor(.white)
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
