@@ -37,7 +37,7 @@ struct SettingsView: View {
                 }
                 
                 Section {
-                    Link(destination: URL(string: "https://github.com/tofustudio/panictrack")!) {
+                    Link(destination: URL(string: "https://github.com/Tofuswang/panictrack")!) {
                         Label("原始碼", systemImage: "chevron.left.forwardslash.chevron.right")
                     }
                     
