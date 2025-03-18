@@ -1,8 +1,15 @@
 import SwiftUI
 
 struct SettingsView: View {
+    static let previewStore: PanicStore = {
+        let store = PanicStore()
+        // Add some sample data
+        store.addEntry()
+        return store
+    }()
+    
     @Environment(\.dismiss) private var dismiss
-    @ObservedObject var panicStore: PanicStore
+    @EnvironmentObject var panicStore: PanicStore
     @Environment(\.colorScheme) private var colorScheme
     
     var body: some View {
@@ -10,52 +17,34 @@ struct SettingsView: View {
             List {
                 Section {
                     NavigationLink {
-                        StatisticsExportView(panicStore: panicStore)
+                        StatisticsExportView()
                     } label: {
-                        Label("統計資料", systemImage: "chart.bar.doc.horizontal")
+                        Label(LocalizedStringKey("settings.stats"), systemImage: "chart.bar.doc.horizontal")
                     }
                 } header: {
-                    Text("資料管理")
-                }
-                
-                Section {
-                    NavigationLink {
-                        Text("即將推出")
-                            .foregroundColor(.secondary)
-                    } label: {
-                        Label("小工具", systemImage: "hammer")
-                    }
-                    
-                    NavigationLink {
-                        Text("即將推出")
-                            .foregroundColor(.secondary)
-                    } label: {
-                        Label("通知設定", systemImage: "bell")
-                    }
-                } header: {
-                    Text("功能")
+                    Text(LocalizedStringKey("settings.data"))
                 }
                 
                 Section {
                     Link(destination: URL(string: "https://github.com/Tofuswang/panictrack")!) {
-                        Label("原始碼", systemImage: "chevron.left.forwardslash.chevron.right")
+                        Label(LocalizedStringKey("settings.source"), systemImage: "chevron.left.forwardslash.chevron.right")
                     }
                     
                     Link(destination: URL(string: "mailto:terry.f.wang@gmail.com")!) {
-                        Label("意見回饋", systemImage: "envelope")
+                        Label(LocalizedStringKey("settings.feedback"), systemImage: "envelope")
                     }
                     
-                    Text("版本 1.0.0")
+                    Text(LocalizedStringKey("settings.version"))
                         .foregroundColor(.secondary)
                 } header: {
-                    Text("關於")
+                    Text(LocalizedStringKey("settings.about"))
                 }
             }
-            .navigationTitle("設定")
+            .navigationTitle(LocalizedStringKey("settings.title"))
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    Button("完成") {
+                    Button(LocalizedStringKey("settings.done")) {
                         dismiss()
                     }
                     .foregroundColor(.white)
@@ -64,6 +53,22 @@ struct SettingsView: View {
             .tint(.white)
         }
     }
+}
+
+#Preview {
+    NavigationView {
+        SettingsView()
+            .environmentObject(SettingsView.previewStore)
+    }
+    .preferredColorScheme(.dark)
+}
+
+#Preview {
+    NavigationView {
+        StatisticsExportView()
+            .environmentObject(PanicStore())
+    }
+    .preferredColorScheme(.dark)
 }
 
 #if os(iOS)
@@ -83,8 +88,8 @@ struct ActivityViewController: UIViewControllerRepresentable {
 }
 
 struct StatisticsExportView: View {
-    @ObservedObject var panicStore: PanicStore
-    @State private var exportMessage: String? = nil
+    @EnvironmentObject var panicStore: PanicStore
+    @State private var showExportMessage = false
     @State private var showShareSheet = false
     @State private var csvURL: URL? = nil
     @State private var isPreparingCSV = false
@@ -92,14 +97,37 @@ struct StatisticsExportView: View {
     var body: some View {
         List {
             Section {
-                Button(action: {
+                // Large, easily tappable button similar to main panic button
+Button(action: {
                     UIPasteboard.general.string = panicStore.exportDailyStats()
-                    exportMessage = "已複製到剪貼簿"
+                    showExportMessage = true
+                    let generator = UINotificationFeedbackGenerator()
+                    generator.notificationOccurred(.success)
+                    // Hide the message after 2 seconds
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                        showExportMessage = false
+                    }
                 }) {
-                    Label("匯出今日統計", systemImage: "doc.on.clipboard")
+                    HStack {
+                        Image(systemName: "doc.on.clipboard")
+                            .font(.title2)
+                        Text(LocalizedStringKey("export.today"))
+                            .font(.title3)
+                    }
+                    .frame(maxWidth: .infinity)
+                    .padding(.vertical, 12)
+                    .background(Color(white: 0.15))
+                    .cornerRadius(12)
                 }
                 
-                Button(action: {
+                if showExportMessage {
+                    Text(LocalizedStringKey("export.copied"))
+                        .foregroundColor(.secondary)
+                        .font(.footnote)
+                }
+                
+                // Large, easily tappable button similar to main panic button
+Button(action: {
                     isPreparingCSV = true
                     // 在背景執行 CSV 匯出
                     Task {
@@ -110,6 +138,8 @@ struct StatisticsExportView: View {
                             try? data.write(to: fileURL)
                             csvURL = fileURL
                             showShareSheet = true
+                            let generator = UINotificationFeedbackGenerator()
+                            generator.notificationOccurred(.success)
                         }
                         isPreparingCSV = false
                     }
@@ -118,25 +148,28 @@ struct StatisticsExportView: View {
                         if isPreparingCSV {
                             ProgressView()
                                 .progressViewStyle(CircularProgressViewStyle(tint: .white))
-                                .padding(.trailing, 5)
+                                .padding(.trailing, 8)
                         }
-                        Label("分享 Excel 表格", systemImage: "square.and.arrow.up")
+                        Image(systemName: "square.and.arrow.up")
+                            .font(.title2)
+                        Text(LocalizedStringKey("export.excel"))
+                            .font(.title3)
                     }
+                    .frame(maxWidth: .infinity)
+                    .padding(.vertical, 12)
+                    .background(Color(white: 0.15))
+                    .cornerRadius(12)
                 }
                 .disabled(isPreparingCSV)
                 
-                if let message = exportMessage {
-                    Text(message)
-                        .foregroundColor(.secondary)
-                        .font(.footnote)
-                }
+
             } header: {
-                Text("匯出選項")
+                Text(LocalizedStringKey("export.options"))
             } footer: {
-                Text("選擇合適的匯出格式，Excel 表格包含所有歷史統計資料")
+                Text(LocalizedStringKey("export.description"))
             }
         }
-        .navigationTitle("統計資料")
+        .navigationTitle(LocalizedStringKey("export.title"))
         .navigationBarTitleDisplayMode(.inline)
         .tint(.white)
         .sheet(isPresented: $showShareSheet) {
@@ -146,4 +179,3 @@ struct StatisticsExportView: View {
         }
     }
 }
-

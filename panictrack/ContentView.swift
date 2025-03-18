@@ -1,10 +1,3 @@
-//
-//  ContentView.swift
-//  panictrack
-//
-//  Created by Tofus on 2025/3/16.
-//
-
 import SwiftUI
 
 #if os(iOS)
@@ -12,79 +5,109 @@ import UIKit
 #endif
 
 struct ContentView: View {
-    @ObservedObject var panicStore: PanicStore
-    @State private var particles: [(id: UUID, emoji: String)] = []
+    @EnvironmentObject var panicStore: PanicStore
     @State private var showingHelp = false
-    
-    private let emojis = ["😫"]
-    
-    private func showEmoji() {
-        let emoji = emojis.randomElement() ?? "😫"
-        let particle = (id: UUID(), emoji: emoji)
-        particles.append(particle)
-        
-        // 0.5秒後移除 emoji
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-            particles.removeAll { $0.id == particle.id }
-        }
-    }
+    @State private var showEmoji = false
+    @State private var emojiPosition: CGPoint = .zero
     
     var body: some View {
         NavigationView {
-            ZStack {
-                Color(.systemBackground)
-                    .ignoresSafeArea()
-                
-                VStack(spacing: 0) {
-                    Spacer()
-                    
-                    // 按鈕和統計資訊的容器
-                    ZStack {
-                        // 顯示所有 emoji 粒子
-                        ForEach(particles, id: \.id) { particle in
-                            EmojiParticle(emoji: particle.emoji)
+            GeometryReader { geometry in
+                ZStack {
+                    VStack(spacing: 0) {
+                        // Title section with black background
+                        ZStack {
+                            Color.black
+                                .frame(height: 100)
+                                .edgesIgnoringSafeArea(.top)
+                            
+                            HStack {
+                                Text(LocalizedStringKey("content.title"))
+                                    .font(.system(size: 36, weight: .bold))
+                                    .foregroundColor(.primary)
+                                    .padding(.leading)
+                                
+                                Spacer()
+                                
+                                Button {
+                                    showingHelp = true
+                                } label: {
+                                    Image(systemName: "info.circle")
+                                        .font(.system(size: 22))
+                                        .foregroundColor(.primary)
+                                }
+                                .padding(.trailing)
+                            }
+                            .padding(.top, 45)
                         }
                         
-                        // 固定的按鈕和統計資訊
-                        VStack(spacing: 0) {
-                            PanicButton {
-                                showEmoji()
-                                panicStore.addEntry()
-                                let generator = UIImpactFeedbackGenerator(style: .heavy)
-                                generator.impactOccurred()
+                        // Main content area with panic button and stats
+                        VStack(spacing: 120) {
+                            Spacer()
+                            
+                            // Large rectangular panic button - takes up 1/3 of available height
+                            VStack {
+                                GeometryReader { buttonGeometry in
+                                    PanicButton {
+                                        panicStore.addEntry()
+                                        
+                                        // Stronger haptic feedback for milestone
+                                        let todayCount = panicStore.entriesForDate(Date()).count
+                                        if todayCount % 1 == 0 && todayCount > 0 {
+                                            // Double haptic for milestone
+                                            let generator = UIImpactFeedbackGenerator(style: .heavy)
+                                            generator.impactOccurred()
+                                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                                                generator.impactOccurred()
+                                            }
+                                            
+                                            // Show encouraging emoji from button center
+                                            emojiPosition = CGPoint(
+                                                x: buttonGeometry.frame(in: .global).midX,
+                                                y: buttonGeometry.frame(in: .global).midY
+                                            )
+                                            showEmoji = true
+                                        } else {
+                                            // Normal haptic feedback
+                                            let generator = UIImpactFeedbackGenerator(style: .heavy)
+                                            generator.impactOccurred()
+                                        }
+                                    }
+                                    .frame(maxWidth: .infinity)
+                                    .frame(height: 200)
+                                }
                             }
-                            .padding(.horizontal)
+                            .padding(.horizontal, 12)
                             
                             Spacer()
                             
+                            // Stats view at the bottom
                             StatsView(
                                 todayCount: panicStore.entriesForDate(Date()).count,
                                 weekCount: panicStore.entriesForLastNDays(7).count
                             )
-                            .padding(.bottom)
+                            .padding(.bottom, 20)
+                            .padding(.horizontal, 12)
                         }
                     }
+                    
+                    // Floating emoji layer
+                    FloatingEmojiContainer(isVisible: $showEmoji, position: emojiPosition)
                 }
             }
-            .navigationTitle("焦慮戳戳樂")
-            .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    Button {
-                        showingHelp = true
-                    } label: {
-                        Image(systemName: "info.circle")
-                            .foregroundColor(.white)
-                    }
-                }
-            }
+            .navigationBarHidden(true)
             .sheet(isPresented: $showingHelp) {
                 HelpView()
             }
-            .tint(.white)
         }
     }
-}
+        
+        
+        
+    }
+
 
 #Preview {
-    ContentView(panicStore: PanicStore())
+    ContentView()
+        .environmentObject(PanicStore())
 }

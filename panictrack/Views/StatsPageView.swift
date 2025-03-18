@@ -2,7 +2,7 @@ import SwiftUI
 import Charts
 
 struct StatsPageView: View {
-    @ObservedObject var panicStore: PanicStore
+    @EnvironmentObject var panicStore: PanicStore
     @State private var selectedTimeRange = TimeRange.day
     @State private var chartScale: CGFloat = 1
     @State private var showingSettings = false
@@ -12,10 +12,10 @@ struct StatsPageView: View {
         
         var title: String {
             switch self {
-            case .day: return "今日"
-            case .week: return "最近7天"
-            case .month: return "本月"
-            case .year: return "全年"
+            case .day: return String(localized: "stats.range.day")
+            case .week: return String(localized: "stats.range.week")
+            case .month: return String(localized: "stats.range.month")
+            case .year: return String(localized: "stats.range.year")
             }
         }
     }
@@ -46,13 +46,13 @@ struct StatsPageView: View {
     var chartTitle: String {
         switch selectedTimeRange {
         case .day:
-            return "今日焦慮趨勢"
+            return String(localized: "stats.trend.day")
         case .week:
-            return "最近7天焦慮趨勢"
+            return String(localized: "stats.trend.week")
         case .month:
-            return "本月焦慮趨勢"
+            return String(localized: "stats.trend.month")
         case .year:
-            return "全年焦慮趨勢"
+            return String(localized: "stats.trend.year")
         }
     }
     
@@ -61,7 +61,7 @@ struct StatsPageView: View {
         case .day:
             return panicStore.getDayStats() // 0-23點
         case .week:
-            return panicStore.getWeekStats() // 最近7天
+            return panicStore.getWeekStats() // 最迗7天
         case .month:
             return panicStore.getMonthStats() // 當月每日
         case .year:
@@ -86,7 +86,7 @@ struct StatsPageView: View {
                     // Time range picker
                     VStack(alignment: .leading, spacing: 12) {
                         HStack {
-                            Text("統計週期")
+                            Text(LocalizedStringKey("stats.period"))
                                 .font(.subheadline)
                                 .foregroundColor(.white.opacity(0.7))
                             Text("•")
@@ -144,7 +144,7 @@ struct StatsPageView: View {
                                         )
                                     )
                                 
-                                Text("這個週期內沒有焦慮記錄")
+                                Text(LocalizedStringKey("stats.no.data"))
                                     .font(.subheadline)
                                     .foregroundColor(.gray)
                             }
@@ -170,7 +170,7 @@ struct StatsPageView: View {
                     
                     VStack(alignment: .leading, spacing: 16) {
                         HStack {
-                            Text("統計摘要")
+                            Text(LocalizedStringKey("stats.summary"))
                                 .font(.headline)
                                 .foregroundColor(.white)
                             Text("•")
@@ -186,35 +186,35 @@ struct StatsPageView: View {
                             GridItem(.flexible())
                         ], spacing: 12) {
                             StatSummaryCard(
-                                title: "總次數",
+                                title: String(localized: "stats.total"),
                                 value: "\(totalCount)",
                                 icon: "hand.tap.fill",
                                 gradient: [Color.red.opacity(0.7), Color.red],
-                                description: "本週期總共發生次數"
+                                description: String(localized: "stats.total.description")
                             )
                             
                             StatSummaryCard(
-                                title: "平均",
+                                title: String(localized: "stats.average"),
                                 value: averageCount,
                                 icon: "chart.bar.fill",
                                 gradient: [Color.blue.opacity(0.7), Color.blue],
-                                description: "每個時間點平均次數"
+                                description: String(localized: "stats.average.description")
                             )
                             
                             StatSummaryCard(
-                                title: "最高",
+                                title: String(localized: "stats.highest"),
                                 value: "\(chartData.map { $0.count }.max() ?? 0)",
                                 icon: "arrow.up.circle.fill",
                                 gradient: [Color.orange.opacity(0.7), Color.orange],
-                                description: "單一時間點最多次數"
+                                description: String(localized: "stats.highest.description")
                             )
                             
                             StatSummaryCard(
-                                title: "最低",
+                                title: String(localized: "stats.lowest"),
                                 value: "\(chartData.map { $0.count }.min() ?? 0)",
                                 icon: "arrow.down.circle.fill",
                                 gradient: [Color.green.opacity(0.7), Color.green],
-                                description: "單一時間點最少次數"
+                                description: String(localized: "stats.lowest.description")
                             )
                         }
                         .padding(.horizontal)
@@ -222,7 +222,7 @@ struct StatsPageView: View {
                     .animation(.easeInOut, value: selectedTimeRange)
                 }
             }
-            .navigationTitle("焦慮統計")
+            .navigationTitle(LocalizedStringKey("stats.title"))
             .navigationBarTitleDisplayMode(.large)
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
@@ -235,7 +235,7 @@ struct StatsPageView: View {
                 }
             }
             .sheet(isPresented: $showingSettings) {
-                SettingsView(panicStore: panicStore)
+                SettingsView()
             }
             .preferredColorScheme(.dark)
         }
@@ -307,13 +307,14 @@ struct StatSummaryCard: View {
         store.addEntry(at: twoHoursAgo)
     }
     
-    // 最近7天數據
+    // 最迗7天數據
     if let oneDayAgo = calendar.date(byAdding: .day, value: -1, to: now),
        let twoDaysAgo = calendar.date(byAdding: .day, value: -2, to: now) {
         store.addEntry(at: oneDayAgo)
         store.addEntry(at: twoDaysAgo)
     }
     
-    return StatsPageView(panicStore: store)
+    return StatsPageView()
+        .environmentObject(store)
         .preferredColorScheme(.dark)
 }

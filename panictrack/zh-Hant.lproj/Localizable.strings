@@ -1,0 +1,66 @@
+// 主要介面
+"content.title" = "焦慮戳戳樂";
+"panic.button" = "好焦慮！";
+
+// 標籤列
+"tab.panic" = "焦慮";
+"tab.stats" = "統計";
+
+// 統計頁面
+"stats.title" = "焦慮統計";
+"stats.period" = "統計週期";
+"stats.range.day" = "今日";
+"stats.range.week" = "最近7天";
+"stats.range.month" = "本月";
+"stats.range.year" = "全年";
+"stats.trend.day" = "今日焦慮趨勢";
+"stats.trend.week" = "最近7天焦慮趨勢";
+"stats.trend.month" = "本月焦慮趨勢";
+"stats.trend.year" = "全年焦慮趨勢";
+"stats.summary" = "統計摘要";
+"stats.total" = "總次數";
+"stats.total.description" = "本週期總共發生次數";
+"stats.average" = "平均";
+"stats.average.description" = "每個時間點平均次數";
+"stats.highest" = "最高";
+"stats.highest.description" = "單一時間點最高發生次數";
+"stats.lowest" = "最低";
+"stats.lowest.description" = "單一時間點最低發生次數";
+"stats.no.data" = "這個週期內沒有焦慮記錄";
+"stats.today" = "今日";
+"stats.week" = "最近7天";
+
+// 設定頁面
+"settings.title" = "設定";
+"settings.data" = "資料管理";
+"settings.stats" = "統計資料";
+"settings.source" = "原始碼";
+"settings.feedback" = "意見回饋";
+"settings.about" = "關於";
+"settings.done" = "完成";
+"settings.version" = "版本 1.0.0";
+
+// 匯出功能
+"export.title" = "統計資料";
+"export.options" = "匯出選項";
+"export.today" = "匯出今日統計";
+"export.excel" = "分享 Excel 表格";
+"export.copied" = "已複製到剪貼簿";
+"export.description" = "選擇合適的匯出格式，Excel 表格包含所有歷史統計資料";
+"export.daily.format" = "在 {date}，你總共記錄了 {count} 次焦慮。";
+
+// 幫助頁面
+"help.title" = "使用說明";
+"help.done" = "完成";
+"help.basic.title" = "基本功能";
+"help.basic.1" = "當你感到焦慮時，點擊大按鈕來記錄你的情緒。";
+"help.basic.2" = "每次點擊都會顯示一個表情符號，幫助你釋放壓力。";
+"help.stats.title" = "統計圖表";
+"help.stats.1" = "「今日」顯示當天每小時的焦慮次數";
+"help.stats.2" = "「最近7天」顯示一週內每天的焦慮趨勢";
+"help.stats.3" = "「本月」顯示當月每週的焦慮趨勢";
+"help.stats.4" = "「全年」顯示全年每月的焦慮趨勢";
+"help.export.title" = "資料匯出";
+"help.export.1" = "在「統計數據」頁面點擊齒輪圖示";
+"help.export.2" = "選擇「統計資料」可以匯出詳細的統計數據";
+"help.export.3" = "可以選擇複製今日統計或匯出完整的 Excel 表格";

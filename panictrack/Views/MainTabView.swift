@@ -1,9 +1,10 @@
 import SwiftUI
 
 struct MainTabView: View {
-    @StateObject private var panicStore = PanicStore()
+    @EnvironmentObject private var panicStore: PanicStore
     
     init() {
+        // Configure tab bar appearance
         let appearance = UITabBarAppearance()
         appearance.configureWithOpaqueBackground()
         appearance.backgroundColor = .black
@@ -20,14 +21,14 @@ struct MainTabView: View {
     
     var body: some View {
         TabView {
-            ContentView(panicStore: panicStore)
+            ContentView()
                 .tabItem {
-                    Label("焦慮按鈕", systemImage: "hand.tap")
+                    Label(LocalizedStringKey("tab.panic"), systemImage: "hand.tap")
                 }
             
-            StatsPageView(panicStore: panicStore)
+            StatsPageView()
                 .tabItem {
-                    Label("統計數據", systemImage: "chart.bar")
+                    Label(LocalizedStringKey("tab.stats"), systemImage: "chart.bar")
                 }
         }
         .tint(.white)
@@ -37,4 +38,5 @@ struct MainTabView: View {
 
 #Preview {
     MainTabView()
+        .environmentObject(PanicStore())
 }

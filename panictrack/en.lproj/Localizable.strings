@@ -1,0 +1,66 @@
+// Main View
+"content.title" = "Panic Tracker";
+"panic.button" = "I'm Panic\n Ahhh!";
+
+// Tab Items
+"tab.panic" = "Panic";
+"tab.stats" = "Statistics";
+
+// Statistics Page
+"stats.title" = "Statistics";
+"stats.period" = "Time Period";
+"stats.range.day" = "Today";
+"stats.range.week" = "7-Day";
+"stats.range.month" = "Monthly";
+"stats.range.year" = "Year";
+"stats.trend.day" = "Today's Trend";
+"stats.trend.week" = "7-Day Trend";
+"stats.trend.month" = "Monthly Trend";
+"stats.trend.year" = "Yearly Trend";
+"stats.summary" = "Summary";
+"stats.total" = "Total";
+"stats.total.description" = "Total occurrences in this period";
+"stats.average" = "Average";
+"stats.average.description" = "Average occurrences per time unit";
+"stats.highest" = "Highest";
+"stats.highest.description" = "Highest number of occurrences in a single time unit";
+"stats.lowest" = "Lowest";
+"stats.lowest.description" = "Lowest number of occurrences in a single time unit";
+"stats.no.data" = "No panic records in this period";
+"stats.today" = "Today";
+"stats.week" = "Last 7 Days";
+
+// Settings Page
+"settings.title" = "Settings";
+"settings.data" = "Data Management";
+"settings.stats" = "Statistics";
+"settings.source" = "Source Code";
+"settings.feedback" = "Feedback";
+"settings.about" = "About";
+"settings.done" = "Done";
+"settings.version" = "Version 1.0.0";
+
+// Export Features
+"export.title" = "Statistics";
+"export.options" = "Export Options";
+"export.today" = "Export Today's Stats";
+"export.excel" = "Share Excel File";
+"export.copied" = "Copied to clipboard";
+"export.description" = "Choose a suitable export format. Excel file includes all historical statistics.";
+"export.daily.format" = "On {date}, you experienced anxiety {count} times.";
+
+// Help Page
+"help.title" = "Help";
+"help.done" = "Done";
+"help.basic.title" = "Basic Features";
+"help.basic.1" = "When you feel anxious, tap the large button to record your emotion.";
+"help.basic.2" = "Each tap will show an emoji to help you release stress.";
+"help.stats.title" = "Statistics";
+"help.stats.1" = "'Today' shows hourly anxiety occurrences";
+"help.stats.2" = "'7-Day' shows daily anxiety trends for the week";
+"help.stats.3" = "'Monthly' shows weekly anxiety trends";
+"help.stats.4" = "'Year' shows monthly anxiety trends";
+"help.export.title" = "Data Export";
+"help.export.1" = "Click the gear icon in the Statistics page";
+"help.export.2" = "Choose 'Statistics' to export detailed data";
+"help.export.3" = "You can copy today's stats or export a complete Excel file";
