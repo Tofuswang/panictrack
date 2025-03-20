@@ -115,7 +115,7 @@ class PanicStore: ObservableObject {
         let today = Date()
         
         // 取得今年第一天
-        var components = calendar.dateComponents([.year], from: today)
+        let components = calendar.dateComponents([.year], from: today)
         let startOfYear = calendar.date(from: components)!
         
         var monthCounts = [Int: Int]() // month: count
