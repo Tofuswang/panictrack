@@ -6,7 +6,20 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		ED054AD22D8A7F2200824644 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED054AD12D8A7F2200824644 /* WidgetKit.framework */; };
+		ED054AD42D8A7F2200824644 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED054AD32D8A7F2200824644 /* SwiftUI.framework */; };
+		ED054AE52D8A7F2300824644 /* PanicTrackWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = ED054ACF2D8A7F2200824644 /* PanicTrackWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
+		ED054AE32D8A7F2300824644 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = ED2AC61C2D87121E00B0F46A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = ED054ACE2D8A7F2200824644;
+			remoteInfo = PanicTrackWidgetExtension;
+		};
 		ED2AC63B2D87121E00B0F46A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = ED2AC61C2D87121E00B0F46A /* Project object */;
@@ -23,13 +36,49 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		ED054AE72D8A7F2300824644 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				ED054AE52D8A7F2300824644 /* PanicTrackWidgetExtension.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		ED054ACF2D8A7F2200824644 /* PanicTrackWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = PanicTrackWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		ED054AD12D8A7F2200824644 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		ED054AD32D8A7F2200824644 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
+		ED054AE62D8A7F2300824644 /* PanicTrackWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PanicTrackWidgetExtension.entitlements; sourceTree = "<group>"; };
 		ED2AC6242D87121E00B0F46A /* panictrack.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = panictrack.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED2AC63A2D87121E00B0F46A /* panictrackTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = panictrackTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED2AC6442D87121E00B0F46A /* panictrackUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = panictrackUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		ED054AEA2D8A7F2300824644 /* Exceptions for "PanicTrackWidget" folder in "PanicTrackWidgetExtension" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = ED054ACE2D8A7F2200824644 /* PanicTrackWidgetExtension */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
+		ED054AD52D8A7F2200824644 /* PanicTrackWidget */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				ED054AEA2D8A7F2300824644 /* Exceptions for "PanicTrackWidget" folder in "PanicTrackWidgetExtension" target */,
+			);
+			path = PanicTrackWidget;
+			sourceTree = "<group>";
+		};
 		ED2AC6262D87121E00B0F46A /* panictrack */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = panictrack;
@@ -48,6 +97,15 @@
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		ED054ACC2D8A7F2200824644 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ED054AD42D8A7F2200824644 /* SwiftUI.framework in Frameworks */,
+				ED054AD22D8A7F2200824644 /* WidgetKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		ED2AC6212D87121E00B0F46A /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -72,12 +130,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		ED054AD02D8A7F2200824644 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				ED054AD12D8A7F2200824644 /* WidgetKit.framework */,
+				ED054AD32D8A7F2200824644 /* SwiftUI.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		ED2AC61B2D87121E00B0F46A = {
 			isa = PBXGroup;
 			children = (
+				ED054AE62D8A7F2300824644 /* PanicTrackWidgetExtension.entitlements */,
 				ED2AC6262D87121E00B0F46A /* panictrack */,
 				ED2AC63D2D87121E00B0F46A /* panictrackTests */,
 				ED2AC6472D87121E00B0F46A /* panictrackUITests */,
+				ED054AD52D8A7F2200824644 /* PanicTrackWidget */,
+				ED054AD02D8A7F2200824644 /* Frameworks */,
 				ED2AC6252D87121E00B0F46A /* Products */,
 			);
 			sourceTree = "<group>";
@@ -88,6 +158,7 @@
 				ED2AC6242D87121E00B0F46A /* panictrack.app */,
 				ED2AC63A2D87121E00B0F46A /* panictrackTests.xctest */,
 				ED2AC6442D87121E00B0F46A /* panictrackUITests.xctest */,
+				ED054ACF2D8A7F2200824644 /* PanicTrackWidgetExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -95,6 +166,28 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		ED054ACE2D8A7F2200824644 /* PanicTrackWidgetExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = ED054AEB2D8A7F2300824644 /* Build configuration list for PBXNativeTarget "PanicTrackWidgetExtension" */;
+			buildPhases = (
+				ED054ACB2D8A7F2200824644 /* Sources */,
+				ED054ACC2D8A7F2200824644 /* Frameworks */,
+				ED054ACD2D8A7F2200824644 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				ED054AD52D8A7F2200824644 /* PanicTrackWidget */,
+			);
+			name = PanicTrackWidgetExtension;
+			packageProductDependencies = (
+			);
+			productName = PanicTrackWidgetExtension;
+			productReference = ED054ACF2D8A7F2200824644 /* PanicTrackWidgetExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		ED2AC6232D87121E00B0F46A /* panictrack */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = ED2AC64E2D87121E00B0F46A /* Build configuration list for PBXNativeTarget "panictrack" */;
@@ -102,10 +195,12 @@
 				ED2AC6202D87121E00B0F46A /* Sources */,
 				ED2AC6212D87121E00B0F46A /* Frameworks */,
 				ED2AC6222D87121E00B0F46A /* Resources */,
+				ED054AE72D8A7F2300824644 /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				ED054AE42D8A7F2300824644 /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
 				ED2AC6262D87121E00B0F46A /* panictrack */,
@@ -173,6 +268,9 @@
 				LastSwiftUpdateCheck = 1620;
 				LastUpgradeCheck = 1620;
 				TargetAttributes = {
+					ED054ACE2D8A7F2200824644 = {
+						CreatedOnToolsVersion = 16.2;
+					};
 					ED2AC6232D87121E00B0F46A = {
 						CreatedOnToolsVersion = 16.2;
 					};
@@ -204,11 +302,19 @@
 				ED2AC6232D87121E00B0F46A /* panictrack */,
 				ED2AC6392D87121E00B0F46A /* panictrackTests */,
 				ED2AC6432D87121E00B0F46A /* panictrackUITests */,
+				ED054ACE2D8A7F2200824644 /* PanicTrackWidgetExtension */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		ED054ACD2D8A7F2200824644 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		ED2AC6222D87121E00B0F46A /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -233,6 +339,13 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		ED054ACB2D8A7F2200824644 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		ED2AC6202D87121E00B0F46A /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -257,6 +370,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		ED054AE42D8A7F2300824644 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = ED054ACE2D8A7F2200824644 /* PanicTrackWidgetExtension */;
+			targetProxy = ED054AE32D8A7F2300824644 /* PBXContainerItemProxy */;
+		};
 		ED2AC63C2D87121E00B0F46A /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = ED2AC6232D87121E00B0F46A /* panictrack */;
@@ -270,6 +388,69 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		ED054AE82D8A7F2300824644 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = PanicTrackWidgetExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 72G4VDLANB;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = PanicTrackWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = PanicTrackWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0.2;
+				PRODUCT_BUNDLE_IDENTIFIER = com.tofuswang.panictrack.PanicTrackWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		ED054AE92D8A7F2300824644 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = PanicTrackWidgetExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 72G4VDLANB;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = PanicTrackWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = PanicTrackWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0.2;
+				PRODUCT_BUNDLE_IDENTIFIER = com.tofuswang.panictrack.PanicTrackWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
 		ED2AC64C2D87121E00B0F46A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -412,7 +593,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 15.2;
-				MARKETING_VERSION = 1.0.1;
+				MARKETING_VERSION = 1.0.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.tofuswang.panictrack;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
@@ -453,7 +634,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 15.2;
-				MARKETING_VERSION = 1.0.1;
+				MARKETING_VERSION = 1.0.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.tofuswang.panictrack;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
@@ -474,7 +655,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 72G4VDLANB;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
 				MACOSX_DEPLOYMENT_TARGET = 15.2;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.tofuswang.panictrackTests;
@@ -497,7 +678,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 72G4VDLANB;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
 				MACOSX_DEPLOYMENT_TARGET = 15.2;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.tofuswang.panictrackTests;
@@ -519,7 +700,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 72G4VDLANB;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
 				MACOSX_DEPLOYMENT_TARGET = 15.2;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.tofuswang.panictrackUITests;
@@ -541,7 +722,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 72G4VDLANB;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
 				MACOSX_DEPLOYMENT_TARGET = 15.2;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.tofuswang.panictrackUITests;
@@ -559,6 +740,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		ED054AEB2D8A7F2300824644 /* Build configuration list for PBXNativeTarget "PanicTrackWidgetExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				ED054AE82D8A7F2300824644 /* Debug */,
+				ED054AE92D8A7F2300824644 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		ED2AC61F2D87121E00B0F46A /* Build configuration list for PBXProject "panictrack" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

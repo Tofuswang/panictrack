@@ -11,6 +11,8 @@ struct SettingsView: View {
     @Environment(\.dismiss) private var dismiss
     @EnvironmentObject var panicStore: PanicStore
     @Environment(\.colorScheme) private var colorScheme
+    // Use a state property that will be synchronized with PanicStore
+    @State private var isVibrationEnabled: Bool = true
     
     var body: some View {
         NavigationView {
@@ -23,6 +25,29 @@ struct SettingsView: View {
                     }
                 } header: {
                     Text(LocalizedStringKey("settings.data"))
+                }
+                
+                Section {
+                    Toggle(isOn: $isVibrationEnabled) {
+                        Label(LocalizedStringKey("settings.vibration"), systemImage: "iphone.radiowaves.left.and.right")
+                    }
+                    .tint(Color.green)
+                    .onChange(of: isVibrationEnabled) { newValue in
+                        // Save the setting directly to UserDefaults
+                        if let userDefaults = UserDefaults(suiteName: "group.com.tofus.panictrack") {
+                            userDefaults.set(newValue, forKey: "vibrationEnabled")
+                            
+                            // Trigger haptic feedback when toggle is turned ON
+                            if newValue {
+                                #if os(iOS)
+                                let generator = UIImpactFeedbackGenerator(style: .medium)
+                                generator.impactOccurred()
+                                #endif
+                            }
+                        }
+                    }
+                } header: {
+                    Text(LocalizedStringKey("settings.preferences"))
                 }
                 
                 Section {
@@ -42,6 +67,13 @@ struct SettingsView: View {
             }
             .navigationTitle(LocalizedStringKey("settings.title"))
             .navigationBarTitleDisplayMode(.inline)
+            .onAppear {
+                // Initialize the vibration setting from UserDefaults with a default value of true
+                if let userDefaults = UserDefaults(suiteName: "group.com.tofus.panictrack") {
+                    // If the key doesn't exist yet, it will default to true
+                    isVibrationEnabled = userDefaults.object(forKey: "vibrationEnabled") == nil ? true : userDefaults.bool(forKey: "vibrationEnabled")
+                }
+            }
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button(LocalizedStringKey("settings.done")) {

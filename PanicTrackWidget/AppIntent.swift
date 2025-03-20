@@ -9,10 +9,14 @@ import WidgetKit
 import AppIntents
 
 struct ConfigurationAppIntent: WidgetConfigurationIntent {
-    static var title: LocalizedStringResource { "Configuration" }
-    static var description: IntentDescription { "This is an example widget." }
+    static var title: LocalizedStringResource { "設定" }
+    static var description: IntentDescription { "焦慮追蹤小工具設定" }
 
-    // An example configurable parameter.
+    // 保留一個簡單的參數，但在實際使用中不會顯示
     @Parameter(title: "Favorite Emoji", default: "😃")
     var favoriteEmoji: String
+    
+    func perform() async throws -> some IntentResult {
+        return .result()
+    }
 }

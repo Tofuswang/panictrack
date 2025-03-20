@@ -34,6 +34,8 @@
 "settings.title" = "設定";
 "settings.data" = "資料管理";
 "settings.stats" = "統計資料";
+"settings.preferences" = "偏好設定";
+"settings.vibration" = "震動效果";
 "settings.source" = "原始碼";
 "settings.feedback" = "意見回饋";
 "settings.about" = "關於";

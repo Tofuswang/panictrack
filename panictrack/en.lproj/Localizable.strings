@@ -34,6 +34,8 @@
 "settings.title" = "Settings";
 "settings.data" = "Data Management";
 "settings.stats" = "Statistics";
+"settings.preferences" = "Preferences";
+"settings.vibration" = "Vibration Effect";
 "settings.source" = "Source Code";
 "settings.feedback" = "Feedback";
 "settings.about" = "About";

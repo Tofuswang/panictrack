@@ -4,10 +4,38 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>PanicTrackWidgetExtension.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>1</integer>
+		</dict>
 		<key>panictrack.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>0</integer>
+		</dict>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>ED054ACE2D8A7F2200824644</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>ED2AC6232D87121E00B0F46A</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>ED2AC6392D87121E00B0F46A</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>ED2AC6432D87121E00B0F46A</key>
+		<dict>
+			<key>primary</key>
+			<true/>
 		</dict>
 	</dict>
 </dict>

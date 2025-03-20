@@ -13,8 +13,10 @@ struct PanicEntry: Identifiable, Codable {
 class PanicStore: ObservableObject {
     @Published private(set) var entries: [PanicEntry] = []
     private let entriesKey = "panicEntries"
+    private let userDefaults: UserDefaults
     
-    init() {
+    init(userDefaults: UserDefaults = UserDefaults(suiteName: "group.com.tofus.panictrack") ?? .standard) {
+        self.userDefaults = userDefaults
         loadEntries()
     }
     
@@ -210,7 +212,7 @@ class PanicStore: ObservableObject {
     // MARK: - Persistence
     
     private func loadEntries() {
-        guard let data = UserDefaults.standard.data(forKey: entriesKey),
+        guard let data = userDefaults.data(forKey: entriesKey),
               let decodedEntries = try? JSONDecoder().decode([PanicEntry].self, from: data) else {
             return
         }
@@ -219,6 +221,6 @@ class PanicStore: ObservableObject {
     
     private func saveEntries() {
         guard let encodedData = try? JSONEncoder().encode(entries) else { return }
-        UserDefaults.standard.set(encodedData, forKey: entriesKey)
+        userDefaults.set(encodedData, forKey: entriesKey)
     }
 }

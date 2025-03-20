@@ -12,7 +12,5 @@ import SwiftUI
 struct PanicTrackWidgetBundle: WidgetBundle {
     var body: some Widget {
         PanicTrackWidget()
-        PanicTrackWidgetControl()
-        PanicTrackWidgetLiveActivity()
     }
 }
