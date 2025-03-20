@@ -15,9 +15,7 @@ struct ContentView: View {
     var body: some View {
         NavigationView {
             GeometryReader { geometry in
-                ZStack {Rectangle()
-                    .fill(Color.white.opacity(0.2))
-                    .frame(width: 120, height: 2)
+                ZStack {
                     VStack(spacing: 0) {
                         // Title section with black background
                         ZStack {

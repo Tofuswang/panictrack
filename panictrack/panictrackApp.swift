@@ -6,9 +6,21 @@
 //
 
 import SwiftUI
+import UIKit
+
+// Add this class to restrict orientation to portrait only
+class AppDelegate: NSObject, UIApplicationDelegate {
+    func application(_ application: UIApplication, supportedInterfaceOrientationsFor window: UIWindow?) -> UIInterfaceOrientationMask {
+        // Return only portrait orientation
+        return .portrait
+    }
+}
 
 @main
 struct panictrackApp: App {
+    // Register the app delegate
+    @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
+    
     @StateObject private var panicStore = PanicStore()
     
     var body: some Scene {
