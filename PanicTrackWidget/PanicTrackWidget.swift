@@ -12,8 +12,8 @@ import AppIntents
 // PanicStore 已在同一目錄中定義
 
 struct RecordPanicIntent: AppIntent {
-    static var title: LocalizedStringResource = "記錄焦慮"
-    static var description = IntentDescription("記錄一次焦慮發作")
+    static var title: LocalizedStringResource = LocalizedStringResource("widget.record.panic", bundle: .main)
+    static var description = IntentDescription(LocalizedStringResource("widget.record.description", bundle: .main))
     
     @Parameter(title: "Widget ID")
     var widgetID: String
@@ -153,7 +153,7 @@ struct PanicTrackWidgetEntryView : View {
                     // 中型和大型顯示完整的今日統計
                     HStack {
                         ZStack {
-                            Text("今日")
+                            Text(LocalizedStringKey("widget.today"))
                                 .font(.system(size: widgetFamily == .systemMedium ? 14 : 16, weight: .medium))
                                 .foregroundColor(.white)
                                 .opacity(shouldShowAnimation ? 0 : 1)
@@ -182,7 +182,7 @@ struct PanicTrackWidgetEntryView : View {
                                 .transition(.scale.combined(with: .opacity))
                                 .animation(.spring(response: 0.4, dampingFraction: 0.5), value: shouldShowAnimation)
                         } else {
-                            Text("今")
+                            Text(LocalizedStringKey("widget.today.short"))
                                 .font(.system(size: 12, weight: .medium))
                                 .foregroundColor(.white)
                         }
@@ -198,7 +198,7 @@ struct PanicTrackWidgetEntryView : View {
                 
                 // 紅色按鈕設計
                 Button(intent: RecordPanicIntent(widgetID: widgetID)) {
-                    Text("焦慮期戳戳")
+                    Text(LocalizedStringKey("widget.button"))
                         .font(.system(size: buttonFontSize, weight: .bold))
                         .foregroundColor(.white)
                         .frame(maxWidth: .infinity)
@@ -226,8 +226,8 @@ struct PanicTrackWidget: Widget {
                     Color.black
                 }
         }
-        .configurationDisplayName("焦慮戳戳樂")
-        .description("進行焦慮戳戳戳")
+        .configurationDisplayName(LocalizedStringKey("widget.title"))
+        .description(LocalizedStringKey("widget.description"))
         .supportedFamilies([.systemSmall, .systemMedium, .systemLarge])
     }
 }
