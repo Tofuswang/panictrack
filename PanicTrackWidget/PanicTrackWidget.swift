@@ -12,8 +12,8 @@ import AppIntents
 // PanicStore 已在同一目錄中定義
 
 struct RecordPanicIntent: AppIntent {
-    static var title: LocalizedStringResource = LocalizedStringResource("widget.record.panic", bundle: .main)
-    static var description = IntentDescription(LocalizedStringResource("widget.record.description", bundle: .main))
+    static var title: LocalizedStringResource = LocalizedStringResource("widget.record.panic")
+    static var description = IntentDescription(LocalizedStringResource("widget.record.description"))
     
     @Parameter(title: "Widget ID")
     var widgetID: String

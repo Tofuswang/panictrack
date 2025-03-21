@@ -64,6 +64,19 @@ struct SettingsView: View {
                 } header: {
                     Text(LocalizedStringKey("settings.about"))
                 }
+                
+                Section {
+                    Text(LocalizedStringKey("letter.title"))
+                        .font(.headline)
+                        .padding(.bottom, 4)
+                    
+                    Text(LocalizedStringKey("letter.content"))
+                        .font(.body)
+                        .foregroundColor(.secondary)
+                        .lineSpacing(4)
+                } header: {
+                    Text(LocalizedStringKey("letter.header"))
+                }
             }
             .navigationTitle(LocalizedStringKey("settings.title"))
             .navigationBarTitleDisplayMode(.inline)
