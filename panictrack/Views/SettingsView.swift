@@ -20,6 +20,7 @@ struct SettingsView: View {
                 Section {
                     NavigationLink {
                         StatisticsExportView()
+                            .transition(.opacity)
                     } label: {
                         Label(LocalizedStringKey("settings.stats"), systemImage: "chart.bar.doc.horizontal")
                     }
@@ -138,6 +139,7 @@ struct StatisticsExportView: View {
     @State private var showShareSheet = false
     @State private var csvURL: URL? = nil
     @State private var isPreparingCSV = false
+    @State private var isViewAppearing = false
     
     var body: some View {
         List {
@@ -150,7 +152,9 @@ Button(action: {
                     generator.notificationOccurred(.success)
                     // Hide the message after 2 seconds
                     DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-                        showExportMessage = false
+                        withAnimation {
+                            showExportMessage = false
+                        }
                     }
                 }) {
                     HStack {
@@ -169,6 +173,7 @@ Button(action: {
                     Text(LocalizedStringKey("export.copied"))
                         .foregroundColor(.secondary)
                         .font(.footnote)
+                        .transition(.opacity)
                 }
                 
                 // Large, easily tappable button similar to main panic button
@@ -176,17 +181,32 @@ Button(action: {
                     isPreparingCSV = true
                     // 在背景執行 CSV 匯出
                     Task {
-                        let csv = panicStore.exportToCSV()
-                        if let data = csv.data(using: .utf8) {
-                            let tempDir = FileManager.default.temporaryDirectory
-                            let fileURL = tempDir.appendingPathComponent("焦慮統計.csv")
-                            try? data.write(to: fileURL)
-                            csvURL = fileURL
-                            showShareSheet = true
-                            let generator = UINotificationFeedbackGenerator()
-                            generator.notificationOccurred(.success)
+                        await MainActor.run {
+                            // 立即顯示加載狀態
+                            isPreparingCSV = true
                         }
-                        isPreparingCSV = false
+                        
+                        // 將 CSV 生成移至背景線程
+                        await Task.detached(priority: .userInitiated) {
+                            let csv = panicStore.exportToCSV()
+                            if let data = csv.data(using: .utf8) {
+                                let tempDir = FileManager.default.temporaryDirectory
+                                let fileURL = tempDir.appendingPathComponent("焦慮統計.csv")
+                                try? data.write(to: fileURL)
+                                
+                                await MainActor.run {
+                                    csvURL = fileURL
+                                    showShareSheet = true
+                                    isPreparingCSV = false
+                                    let generator = UINotificationFeedbackGenerator()
+                                    generator.notificationOccurred(.success)
+                                }
+                            } else {
+                                await MainActor.run {
+                                    isPreparingCSV = false
+                                }
+                            }
+                        }.value
                     }
                 }) {
                     HStack {
@@ -221,6 +241,16 @@ Button(action: {
             if let url = csvURL {
                 ActivityViewController(activityItems: [url])
             }
+        }
+        .opacity(isViewAppearing ? 1 : 0)
+        .onAppear {
+            // 平滑過渡動畫
+            withAnimation(.easeIn(duration: 0.3)) {
+                isViewAppearing = true
+            }
+        }
+        .onDisappear {
+            isViewAppearing = false
         }
     }
 }

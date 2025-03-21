@@ -15,6 +15,16 @@ class PanicStore: ObservableObject {
     private let entriesKey = "panicEntries"
     private let userDefaults: UserDefaults
     
+    // 添加緩存
+    private var dayStatsCache: [(label: String, count: Int)]? = nil
+    private var weekStatsCache: [(label: String, count: Int)]? = nil
+    private var monthStatsCache: [(label: String, count: Int)]? = nil
+    private var yearStatsCache: [(label: String, count: Int)]? = nil
+    private var lastCacheDate: Date? = nil
+    
+    // 緩存有效期（秒）
+    private let cacheValidityDuration: TimeInterval = 60
+    
     init(userDefaults: UserDefaults = UserDefaults(suiteName: "group.com.tofus.panictrack") ?? .standard) {
         self.userDefaults = userDefaults
         loadEntries()
@@ -26,6 +36,30 @@ class PanicStore: ObservableObject {
         let entry = PanicEntry(timestamp: timestamp)
         entries.append(entry)
         saveEntries()
+        
+        // 清除緩存
+        invalidateStatsCache()
+    }
+    
+    // 添加緩存失效方法
+    private func invalidateStatsCache() {
+        dayStatsCache = nil
+        weekStatsCache = nil
+        monthStatsCache = nil
+        yearStatsCache = nil
+        lastCacheDate = nil
+    }
+    
+    // 檢查緩存是否有效
+    private func isCacheValid() -> Bool {
+        guard let lastDate = lastCacheDate else {
+            return false
+        }
+        
+        // 檢查緩存是否過期
+        let now = Date()
+        let timeSinceLastCache = now.timeIntervalSince(lastDate)
+        return timeSinceLastCache < cacheValidityDuration && Calendar.current.isDateInToday(lastDate)
     }
     
     func entriesForDate(_ date: Date) -> [PanicEntry] {
@@ -44,6 +78,11 @@ class PanicStore: ObservableObject {
     // MARK: - Statistics
     
     func getDayStats() -> [(label: String, count: Int)] {
+        // 如果緩存有效，直接返回緩存
+        if isCacheValid(), let cache = dayStatsCache {
+            return cache
+        }
+        
         let calendar = Calendar.current
         let today = Date()
         let todayEntries = entriesForDate(today)
@@ -54,13 +93,24 @@ class PanicStore: ObservableObject {
             hourCounts[hour, default: 0] += 1
         }
         
-        return (0...23).map { hour in
+        let result = (0...23).map { hour in
             let hourString = String(format: "%02d", hour)
             return (label: hourString, count: hourCounts[hour] ?? 0)
         }
+        
+        // 更新緩存
+        dayStatsCache = result
+        lastCacheDate = today
+        
+        return result
     }
     
     func getWeekStats() -> [(label: String, count: Int)] {
+        // 如果緩存有效，直接返回緩存
+        if isCacheValid(), let cache = weekStatsCache {
+            return cache
+        }
+        
         let calendar = Calendar.current
         let today = Date()
         
@@ -78,10 +128,20 @@ class PanicStore: ObservableObject {
             
             result.append((label: label, count: count))
         }
+        
+        // 更新緩存
+        weekStatsCache = result
+        lastCacheDate = today
+        
         return result
     }
     
     func getMonthStats() -> [(label: String, count: Int)] {
+        // 如果緩存有效，直接返回緩存
+        if isCacheValid(), let cache = monthStatsCache {
+            return cache
+        }
+        
         let calendar = Calendar.current
         let today = Date()
         
@@ -103,14 +163,25 @@ class PanicStore: ObservableObject {
             dayCounts[day, default: 0] += 1
         }
         
-        return (1...numberOfDays).map { day in
+        let result = (1...numberOfDays).map { day in
             let isToday = calendar.isDate(calendar.date(from: DateComponents(year: components.year, month: components.month, day: day))!, inSameDayAs: today)
             let label = isToday ? "今天" : "\(day)"
             return (label: label, count: dayCounts[day] ?? 0)
         }
+        
+        // 更新緩存
+        monthStatsCache = result
+        lastCacheDate = today
+        
+        return result
     }
     
     func getYearStats() -> [(label: String, count: Int)] {
+        // 如果緩存有效，直接返回緩存
+        if isCacheValid(), let cache = yearStatsCache {
+            return cache
+        }
+        
         let calendar = Calendar.current
         let today = Date()
         
@@ -130,12 +201,18 @@ class PanicStore: ObservableObject {
         
         let monthNames = ["一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月"]
         
-        return (0...11).map { index in
+        let result = (0...11).map { index in
             let month = index + 1
             let isCurrentMonth = calendar.component(.month, from: today) == month
             let label = isCurrentMonth ? "本月" : monthNames[index]
             return (label: label, count: monthCounts[month] ?? 0)
         }
+        
+        // 更新緩存
+        yearStatsCache = result
+        lastCacheDate = today
+        
+        return result
     }
     
     // MARK: - Export

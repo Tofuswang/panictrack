@@ -6,6 +6,8 @@ struct StatsPageView: View {
     @State private var selectedTimeRange = TimeRange.day
     @State private var chartScale: CGFloat = 1
     @State private var showingSettings = false
+    @State private var isLoading = true
+    @State private var isViewAppearing = false
     
     enum TimeRange {
         case day, week, month, year
@@ -121,8 +123,7 @@ struct StatsPageView: View {
                         .cornerRadius(8)
                         .padding(.horizontal)
                     }
-                    
-                    // Chart section
+                                        // Chart section
                     VStack(spacing: 16) {
                         Text(chartTitle)
                             .font(.headline)
@@ -132,7 +133,25 @@ struct StatsPageView: View {
                             .transition(.opacity)
                             .id("chart_title_\(selectedTimeRange)")
                         
-                        if chartData.isEmpty {
+                        if isLoading {
+                            VStack(spacing: 16) {
+                                ProgressView()
+                                    .progressViewStyle(CircularProgressViewStyle(tint: .white))
+                                    .scaleEffect(1.5)
+                                
+                                Text(LocalizedStringKey("stats.loading"))
+                                    .font(.subheadline)
+                                    .foregroundColor(.gray)
+                            }
+                            .frame(maxWidth: .infinity)
+                            .frame(height: 200)
+                            .background(
+                                RoundedRectangle(cornerRadius: 12)
+                                    .fill(Color(white: 0.1))
+                            )
+                            .padding(.horizontal)
+                            .transition(.opacity)
+                        } else if chartData.isEmpty {
                             VStack(spacing: 16) {
                                 Image(systemName: "chart.bar.xaxis")
                                     .font(.system(size: 48))
@@ -167,6 +186,7 @@ struct StatsPageView: View {
                     }
                     .animation(.easeInOut, value: selectedTimeRange)
                     .animation(.easeInOut, value: chartData.isEmpty)
+                    .animation(.easeInOut, value: isLoading)
                     
                     VStack(alignment: .leading, spacing: 16) {
                         HStack {
@@ -238,6 +258,26 @@ struct StatsPageView: View {
                 SettingsView()
             }
             .preferredColorScheme(.dark)
+            .onAppear {
+                // 視圖出現時設置加載狀態
+                isLoading = true
+                isViewAppearing = false
+                
+                // 延遲加載數據以避免卡頓
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                    withAnimation(.easeIn) {
+                        isViewAppearing = true
+                    }
+                }
+                
+                // 延遲顯示圖表
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+                    withAnimation {
+                        isLoading = false
+                    }
+                }
+            }
+            .opacity(isViewAppearing ? 1 : 0)
         }
     }
 }
