@@ -13,6 +13,7 @@ struct SettingsView: View {
     @Environment(\.colorScheme) private var colorScheme
     // Use a state property that will be synchronized with PanicStore
     @State private var isVibrationEnabled: Bool = true
+    @State private var showLetterModal: Bool = false
     
     var body: some View {
         NavigationView {
@@ -67,16 +68,17 @@ struct SettingsView: View {
                 }
                 
                 Section {
-                    Text(LocalizedStringKey("letter.title"))
-                        .font(.headline)
-                        .padding(.bottom, 4)
-                    
-                    Text(LocalizedStringKey("letter.content"))
-                        .font(.body)
-                        .foregroundColor(.secondary)
-                        .lineSpacing(4)
-                } header: {
-                    Text(LocalizedStringKey("letter.header"))
+                    Button(action: {
+                        showLetterModal = true
+                    }) {
+                        HStack {
+                            Label(LocalizedStringKey("letter.header"), systemImage: "envelope.open")
+                            Spacer()
+                            Image(systemName: "chevron.right")
+                                .foregroundColor(.gray)
+                        }
+                    }
+                    .foregroundColor(.white)
                 }
             }
             .navigationTitle(LocalizedStringKey("settings.title"))
@@ -97,6 +99,10 @@ struct SettingsView: View {
                 }
             }
             .tint(.white)
+            .sheet(isPresented: $showLetterModal) {
+                LetterView()
+                    .preferredColorScheme(colorScheme)
+            }
         }
     }
 }

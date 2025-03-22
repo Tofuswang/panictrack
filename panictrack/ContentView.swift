@@ -59,40 +59,39 @@ struct ContentView: View {
                                 Spacer().frame(height: mainGeometry.size.height * 0.2)
                                 
                                 // Large rectangular panic button - takes about 1/3 of the screen height
-                                PanicButton {
+                                PanicButton { tapLocation in
                                     panicStore.addEntry()
                                     
-                                    // Show emoji on every tap - positioned higher above the button
-                                    emojiPosition = CGPoint(
-                                        x: mainGeometry.frame(in: .global).midX,
-                                        y: mainGeometry.frame(in: .global).midY - mainGeometry.size.height * 0.15
-                                    )
+                                    // 使用實際點擊位置顯示 emoji
+                                    // 需要將按鈕內的相對坐標轉換為全局坐標
+                                    let buttonFrame = mainGeometry.frame(in: .global)
+                                    let globalX = buttonFrame.minX + tapLocation.x
+                                    let globalY = buttonFrame.minY + tapLocation.y
+                                    emojiPosition = CGPoint(x: globalX, y: globalY)
                                     showEmoji = true
-                                    // Haptic feedback with maximum intensity
+                                    // Haptic feedback with appropriate intensity
                                     let todayCount = panicStore.entriesForDate(Date()).count
                                     
                                     if isVibrationEnabled {
-                                        // Use notification feedback for strongest vibration
-                                        let notificationGenerator = UINotificationFeedbackGenerator()
-                                        notificationGenerator.notificationOccurred(.error) // Strongest system vibration
-                                        
-                                        // Add heavy impact vibrations
-                                        let heavyGenerator = UIImpactFeedbackGenerator(style: .heavy)
-                                        heavyGenerator.impactOccurred(intensity: 1.0)
-                                        
-                                        // For milestone taps, add extra intense vibrations
-                                        if todayCount % 10 == 0 && todayCount > 0 {
-                                            // Add multiple vibrations in sequence for maximum effect
-                                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.05) {
-                                                heavyGenerator.impactOccurred(intensity: 1.0)
-                                                notificationGenerator.notificationOccurred(.error)
-                                            }
-                                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                                                heavyGenerator.impactOccurred(intensity: 1.0)
-                                            }
-                                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.15) {
-                                                notificationGenerator.notificationOccurred(.error)
-                                            }
+                                        // 一般點擊使用重型震動
+                                        if todayCount % 100 != 0 || todayCount == 0 {
+                                            // 使用重型震動，確保能很明顯地感受到
+                                            let heavyGenerator = UIImpactFeedbackGenerator(style: .heavy)
+                                            heavyGenerator.impactOccurred(intensity: 1.0) // 使用最大強度
+                                            
+                                            // 使用通知震動增強震動感
+                                            let notificationGenerator = UINotificationFeedbackGenerator()
+                                            notificationGenerator.notificationOccurred(.warning) // 使用警告類型，比輕型更強烈
+                                        } 
+                                        // 里程碑點擊（每 100 次）使用特殊震動模式
+                                        else if todayCount % 100 == 0 && todayCount > 0 {
+                                            // 使用重型震動和通知震動的組合
+                                            let heavyGenerator = UIImpactFeedbackGenerator(style: .heavy)
+                                            heavyGenerator.impactOccurred(intensity: 1.0) // 使用最大強度
+                                            
+                                            // 使用错误类型的通知震動，这是最强烈的震動
+                                            let notificationGenerator = UINotificationFeedbackGenerator()
+                                            notificationGenerator.notificationOccurred(.error) // 使用错误类型，震動最强烈
                                         }
                                     }
                                 }

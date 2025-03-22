@@ -40,7 +40,7 @@
 "settings.feedback" = "Feedback";
 "settings.about" = "About";
 "settings.done" = "Done";
-"settings.version" = "Version 1.0.0";
+"settings.version" = "Version 1.0.3";
 
 // Export Features
 "export.title" = "Statistics";
@@ -71,3 +71,7 @@
 "letter.header" = "A Letter";
 "letter.title" = "To Tofus a Year From Now:";
 "letter.content" = "Hey, this letter is hidden in a place only you know about.\nIn this app, there are no responses, no comments, no noise. There's only one thing to do—tap tap tap.\n\nTo be honest, you can't really explain why you made this thing. You were just feeling anxious at the time, wanting to escape, wanting to be seen, but not wanting anyone to stare too hard.\nYou just wanted to say: I have this feeling I can't put into words, please let me tap once.\n\nThen many people came to tap too.\nThey didn't say anything, but they understood you.\n\nYou started to wonder: 'Should I make this better? Promote it? Commercialize it? Turn it into a community?'\nBut you actually know that what makes this precious is that it has nothing—only your belief that it should stay.\n\nThis isn't an app for solving problems; it's for letting problems lie there without being forced to solve them.\nIt's for people who, when they don't have the energy to speak, can still use one finger to say: 'I'm still here.'\n\nMaybe a year from now, you're not so anxious anymore, maybe you're doing something else;\nMaybe no one uses this app anymore, maybe you're still secretly updating it, just changing little things;\nMaybe you're not called Tofu anymore, changed to a different name, or became someone's so-and-so.\n\nBut if you're willing to come back and tap once, it means you still remember who you are.\nYou didn't make this to get famous, nor to heal anyone.\nYou just wanted to leave a small space for those who don't want to talk,\nAnd for your past self, a place where no explanations are needed.\n\nThank you for hanging in there then, for not deleting this app.\n\n— From you a year ago, still tapping";
+
+// Blog Card
+"blog.title" = "Tofus' Blog";
+"blog.description" = "Explore more thoughts and creations from Tofus";
