@@ -1,8 +1,8 @@
 // Widget 文字
-"widget.title" = "焦慮戳戳樂";
+"widget.title" = "焦慮戳戳戳";
 "widget.description" = "進行焦慮戳戳戳";
-"widget.button" = "我好焦慮";
+"widget.button" = "焦慮期戳戳";
 "widget.today" = "今日";
-"widget.today.short" = "今";
+"widget.today.short" = "今日";
 "widget.record.panic" = "記錄焦慮";
 "widget.record.description" = "記錄一次焦慮發作";

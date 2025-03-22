@@ -1,0 +1,73 @@
+// 主要界面
+"content.title" = "焦虑戳戳戳";
+"panic.button" = "好焦虑！";
+
+// 标签栏
+"tab.panic" = "焦虑";
+"tab.stats" = "统计";
+
+// 统计页面
+"stats.title" = "焦虑统计";
+"stats.period" = "统计周期";
+"stats.range.day" = "今日";
+"stats.range.week" = "最近7天";
+"stats.range.month" = "本月";
+"stats.range.year" = "全年";
+"stats.trend.day" = "今日焦虑趋势";
+"stats.trend.week" = "最近7天焦虑趋势";
+"stats.trend.month" = "本月焦虑趋势";
+"stats.trend.year" = "全年焦虑趋势";
+"stats.summary" = "统计摘要";
+"stats.total" = "总次数";
+"stats.total.description" = "本周期总共发生次数";
+"stats.average" = "平均";
+"stats.average.description" = "每个时间点平均次数";
+"stats.highest" = "最高";
+"stats.highest.description" = "单一时间点最高发生次数";
+"stats.lowest" = "最低";
+"stats.lowest.description" = "单一时间点最低发生次数";
+"stats.no.data" = "这个周期内没有焦虑记录";
+"stats.today" = "今日";
+"stats.week" = "最近7天";
+
+// 设置页面
+"settings.title" = "设置";
+"settings.data" = "数据管理";
+"settings.stats" = "统计数据";
+"settings.preferences" = "偏好设置";
+"settings.vibration" = "震动效果";
+"settings.source" = "源代码";
+"settings.feedback" = "意见反馈";
+"settings.about" = "关于";
+"settings.done" = "完成";
+"settings.version" = "版本 1.0.0";
+
+// 导出功能
+"export.title" = "统计数据";
+"export.options" = "导出选项";
+"export.today" = "导出今日统计";
+"export.excel" = "分享 Excel 表格";
+"export.copied" = "已复制到剪贴板";
+"export.description" = "选择合适的导出格式，Excel 表格包含所有历史统计数据";
+"export.daily.format" = "在 {date}，你总共记录了 {count} 次焦虑。";
+
+// 帮助页面
+"help.title" = "使用说明";
+"help.done" = "完成";
+"help.basic.title" = "基本功能";
+"help.basic.1" = "当你感到焦虑时，点击大按钮来记录你的情绪。";
+"help.basic.2" = "每次点击都会显示一个表情符号，帮助你释放压力。";
+"help.stats.title" = "统计图表";
+"help.stats.1" = "「今日」显示当天每小时的焦虑次数";
+"help.stats.2" = "「最近7天」显示一周内每天的焦虑趋势";
+"help.stats.3" = "「本月」显示当月每周的焦虑趋势";
+"help.stats.4" = "「全年」显示全年每月的焦虑趋势";
+"help.export.title" = "数据导出";
+"help.export.1" = "在「统计数据」页面点击齿轮图标";
+"help.export.2" = "选择「统计数据」可以导出详细的统计数据";
+"help.export.3" = "可以选择复制今日统计或导出完整的 Excel 表格";
+
+// 信件内容
+"letter.header" = "以下内容请假装没看到";
+"letter.title" = "给一年后的王豆腐：";
+"letter.content" = "这个 app，没有回应，没有评论，没有喧哗。只有一件事能做——那就是戳戳戳。\n\n当初你为什么会做这个东西，老实说你也讲不太清楚。只是你那阵子很焦虑，很想逃，又很想被看见，但又不想被谁认真盯着。\n你只是想说：我有一种说不出的感觉，拜托让我戳一下。\n\n结果很多人也跑来戳。\n他们没有说话，但他们懂你，至少他们也在那边戳戳戳。\n\n你开始怀疑：「我是不是应该把这个做好一点？推广出去？做商业化？做成社群？」\n\n但你其实知道，这东西之所以可贵，是因为它什么都没有，而你还愿意相信它该留着。\n\n这不是为了解决问题的 app，是为了让问题可以先躺着不要被逼着解决。\n\n是让人可以在没力气开口的时候，还能用一根手指说：「我还在。」\n\n也许一年后的你，已经不那么焦虑了，也许你正在做别的什么；\n也许这个 app 已经没有人在用，也许你还在偷偷更新它，然后只改一点点；\n也许你不再叫王豆腐了，换了一个名字，或变成了谁的某某某。\n\n但如果你愿意回来戳一下，或许就代表你还记得自己是谁吧。\n\n你不是为了红才做这个的，也不是为了帮谁疗愈。\n\n你只是想留一个小小的位置，给那些不想说话的人，\n\n也给当初的你，一个不必解释的地方。\n\n你想做的从来就不是一个 app，而是一个活生生，有灵魂的东西\n\n谢谢你那时候有撑住、没把这个 app 删掉。\n\n—— 来自一年以前、还在戳的王豆腐，还有陪王豆腐一起戳戳戳的你";

@@ -1,0 +1,8 @@
+// 위젯 텍스트
+"widget.title" = "패닉 탭";
+"widget.description" = "패닉 탭하기";
+"widget.button" = "패닉 중";
+"widget.today" = "오늘";
+"widget.today.short" = "오늘";
+"widget.record.panic" = "패닉 기록";
+"widget.record.description" = "패닉 발작 기록하기";

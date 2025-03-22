@@ -26,21 +26,78 @@ struct StatsPageView: View {
         let calendar = Calendar.current
         let now = Date()
         let formatter = DateFormatter()
-        formatter.locale = Locale(identifier: "zh_TW")
+        
+        // Get the current locale
+        let currentLocale = Locale.current
+        let languageCode = currentLocale.languageCode ?? "en"
+        
+        // Set the formatter locale based on the language
+        switch languageCode {
+        case "zh":
+            // Check if it's Traditional or Simplified Chinese
+            if currentLocale.identifier.contains("Hant") || currentLocale.identifier.contains("TW") || currentLocale.identifier.contains("HK") {
+                formatter.locale = Locale(identifier: "zh_TW")
+            } else {
+                formatter.locale = Locale(identifier: "zh_CN")
+            }
+        case "ja":
+            formatter.locale = Locale(identifier: "ja_JP")
+        case "ko":
+            formatter.locale = Locale(identifier: "ko_KR")
+        default:
+            formatter.locale = currentLocale
+        }
         
         switch selectedTimeRange {
         case .day:
-            formatter.dateFormat = "M月d日"
+            // Format based on language
+            switch languageCode {
+            case "zh":
+                formatter.dateFormat = "M月d日"
+            case "ja":
+                formatter.dateFormat = "M月d日"
+            case "ko":
+                formatter.dateFormat = "M월d일"
+            default:
+                formatter.dateFormat = "MMM d"
+            }
             return formatter.string(from: now)
         case .week:
             let weekAgo = calendar.date(byAdding: .day, value: -6, to: now)!
-            formatter.dateFormat = "M/d"
+            
+            // Format based on language
+            switch languageCode {
+            case "zh", "ja", "ko":
+                formatter.dateFormat = "M/d"
+            default:
+                formatter.dateFormat = "M/d"
+            }
             return "\(formatter.string(from: weekAgo)) - \(formatter.string(from: now))"
         case .month:
-            formatter.dateFormat = "yyyy年M月"
+            // Format based on language
+            switch languageCode {
+            case "zh":
+                formatter.dateFormat = "yyyy年M月"
+            case "ja":
+                formatter.dateFormat = "yyyy年M月"
+            case "ko":
+                formatter.dateFormat = "yyyy년M월"
+            default:
+                formatter.dateFormat = "MMMM yyyy"
+            }
             return formatter.string(from: now)
         case .year:
-            formatter.dateFormat = "yyyy年"
+            // Format based on language
+            switch languageCode {
+            case "zh":
+                formatter.dateFormat = "yyyy年"
+            case "ja":
+                formatter.dateFormat = "yyyy年"
+            case "ko":
+                formatter.dateFormat = "yyyy년"
+            default:
+                formatter.dateFormat = "yyyy"
+            }
             return formatter.string(from: now)
         }
     }

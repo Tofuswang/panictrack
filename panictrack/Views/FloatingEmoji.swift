@@ -2,10 +2,10 @@ import SwiftUI
 
 struct FloatingEmoji: View {
     let emoji: String
+    
     @State private var offset: CGSize = .zero
     @State private var opacity: Double = 0.0
-    @State private var scale: CGFloat = 0.5
-    @State private var rotation: Double = 0.0
+    @State private var scale: CGFloat = 0.8
     
     var body: some View {
         Text(emoji)
@@ -14,25 +14,18 @@ struct FloatingEmoji: View {
             .offset(offset)
             .opacity(opacity)
             .scaleEffect(scale)
-            .rotationEffect(.degrees(rotation))
             .onAppear {
-                // Gentle pop in effect
-                withAnimation(.spring(response: 0.25, dampingFraction: 0.7)) {
+                // Quick pop-in with more impact
+                withAnimation(.spring(response: 0.1, dampingFraction: 0.5, blendDuration: 0.1)) {
                     opacity = 1.0
-                    scale = 1.2
-                    rotation = Double.random(in: -15...15)
+                    scale = 1.1
                 }
                 
-                // Float up with gentle movement
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
-                    let randomX = CGFloat.random(in: -20...20)
-                    let randomY = CGFloat.random(in: -120...(-100))
-                    
-                    withAnimation(.easeInOut(duration: 0.6)) {
-                        offset = CGSize(width: randomX, height: randomY)
+                // More energetic upward movement
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.08) {
+                    withAnimation(.easeOut(duration: 0.17)) {
                         opacity = 0
-                        scale = 1.4
-                        rotation += Double.random(in: -20...20)
+                        offset = CGSize(width: 0, height: -50) // More pronounced upward movement
                     }
                 }
             }
@@ -43,16 +36,16 @@ struct FloatingEmojiContainer: View {
     @Binding var isVisible: Bool
     let position: CGPoint
     
-    // Encouraging and supportive emojis for the milestone
-    private let emojis = ["🥺"]
+    // Changed emoji to 😫
+    private let emojis = ["😫"]
     
     var body: some View {
         if isVisible {
-            FloatingEmoji(emoji: emojis.randomElement() ?? "🥺")
+            FloatingEmoji(emoji: emojis.randomElement() ?? "😫")
                 .position(position)
                 .onAppear {
-                    // Keep animation duration short and sweet
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+                    // Gentle animation duration
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
                         isVisible = false
                     }
                 }

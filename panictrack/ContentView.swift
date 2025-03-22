@@ -62,30 +62,38 @@ struct ContentView: View {
                                 PanicButton {
                                     panicStore.addEntry()
                                     
-                                    // Stronger haptic feedback for milestone
+                                    // Show emoji on every tap - positioned higher above the button
+                                    emojiPosition = CGPoint(
+                                        x: mainGeometry.frame(in: .global).midX,
+                                        y: mainGeometry.frame(in: .global).midY - mainGeometry.size.height * 0.15
+                                    )
+                                    showEmoji = true
+                                    // Haptic feedback with maximum intensity
                                     let todayCount = panicStore.entriesForDate(Date()).count
-                                    // Use the local state variable for vibration setting
                                     
-                                    if todayCount % 1 == 0 && todayCount > 0 {
-                                        // Double haptic for milestone if vibration is enabled
-                                        if isVibrationEnabled {
-                                            let generator = UIImpactFeedbackGenerator(style: .heavy)
-                                            generator.impactOccurred()
+                                    if isVibrationEnabled {
+                                        // Use notification feedback for strongest vibration
+                                        let notificationGenerator = UINotificationFeedbackGenerator()
+                                        notificationGenerator.notificationOccurred(.error) // Strongest system vibration
+                                        
+                                        // Add heavy impact vibrations
+                                        let heavyGenerator = UIImpactFeedbackGenerator(style: .heavy)
+                                        heavyGenerator.impactOccurred(intensity: 1.0)
+                                        
+                                        // For milestone taps, add extra intense vibrations
+                                        if todayCount % 10 == 0 && todayCount > 0 {
+                                            // Add multiple vibrations in sequence for maximum effect
+                                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.05) {
+                                                heavyGenerator.impactOccurred(intensity: 1.0)
+                                                notificationGenerator.notificationOccurred(.error)
+                                            }
                                             DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                                                generator.impactOccurred()
+                                                heavyGenerator.impactOccurred(intensity: 1.0)
+                                            }
+                                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.15) {
+                                                notificationGenerator.notificationOccurred(.error)
                                             }
                                         }
-                                        
-                                        // Show encouraging emoji from button center
-                                        emojiPosition = CGPoint(
-                                            x: mainGeometry.frame(in: .global).midX,
-                                            y: mainGeometry.frame(in: .global).midY + mainGeometry.size.height * 0.1
-                                        )
-                                        showEmoji = true
-                                    } else if isVibrationEnabled {
-                                        // Normal haptic feedback if vibration is enabled
-                                        let generator = UIImpactFeedbackGenerator(style: .heavy)
-                                        generator.impactOccurred()
                                     }
                                 }
                                 .frame(maxWidth: min(mainGeometry.size.width * 0.95, 400)) // 限制最大寬度

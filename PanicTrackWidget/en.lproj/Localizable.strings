@@ -1,0 +1,8 @@
+// Widget Text
+"widget.title" = "Panic Tracker";
+"widget.description" = "Track your panic moments";
+"widget.button" = "I'm Panic";
+"widget.today" = "Today";
+"widget.today.short" = "Today";
+"widget.record.panic" = "Record Panic";
+"widget.record.description" = "Record a panic episode";

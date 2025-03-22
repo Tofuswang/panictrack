@@ -1,0 +1,8 @@
+// ウィジェット テキスト
+"widget.title" = "パニックタップ";
+"widget.description" = "パニックをタップする";
+"widget.button" = "パニック中";
+"widget.today" = "今日";
+"widget.today.short" = "今日";
+"widget.record.panic" = "パニックを記録";
+"widget.record.description" = "パニック発作を記録する";
