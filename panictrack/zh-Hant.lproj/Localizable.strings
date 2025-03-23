@@ -75,3 +75,7 @@
 // Blog Card
 "blog.title" = "王豆腐的部落格";
 "blog.description" = "探索更多關於王豆腐的想法和創作";
+
+// Recall 2025 Card
+"recall.title" = "請考慮行使您的公民權利（服務由 OurTaiwan 提供）";
+"recall.description" = "輸入戶籍地，找出您有權罷免的立委";

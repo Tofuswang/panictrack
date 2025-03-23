@@ -63,6 +63,52 @@ struct LetterView: View {
                         )
                     }
                     .buttonStyle(PlainButtonStyle())
+                    
+                    Spacer(minLength: 20)
+                    
+                    // Recall 2025 Card
+                    Button(action: {
+                        if let url = URL(string: "https://recall2025.ourtaiwan.tw/") {
+                            openURL(url)
+                        }
+                    }) {
+                        VStack(spacing: 12) {
+                            HStack {
+                                Image(systemName: "signature")
+                                    .font(.title2)
+                                    .foregroundColor(.white)
+                                
+                                Text(LocalizedStringKey("recall.title"))
+                                    .font(.headline)
+                                    .fontWeight(.bold)
+                                    .foregroundColor(.white)
+                                
+                                Spacer()
+                                
+                                Image(systemName: "arrow.up.right.square")
+                                    .foregroundColor(.white)
+                            }
+                            
+                            Text(LocalizedStringKey("recall.description"))
+                                .font(.subheadline)
+                                .foregroundColor(.white)
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                                .lineLimit(1)
+                        }
+                        .padding(16)
+                        .background(
+                            RoundedRectangle(cornerRadius: 12)
+                                .fill(
+                                    LinearGradient(
+                                        gradient: Gradient(colors: [Color.mint.opacity(0.9), Color.black.opacity(0.8)]),
+                                        startPoint: .topLeading,
+                                        endPoint: .bottomTrailing
+                                    )
+                                )
+                                .shadow(color: .black.opacity(0.2), radius: 5, x: 0, y: 2)
+                        )
+                    }
+                    .buttonStyle(PlainButtonStyle())
                 }
                 .padding()
             }
