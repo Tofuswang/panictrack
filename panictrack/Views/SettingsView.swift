@@ -48,6 +48,34 @@ struct SettingsView: View {
                             }
                         }
                     }
+                    
+                    // Add emoji selection option
+                    NavigationLink {
+                        EmojiSelectionView()
+                    } label: {
+                        Label(LocalizedStringKey("settings.emoji"), systemImage: "face.smiling")
+                    }
+                    
+                    // Add button text customization option
+                    NavigationLink {
+                        ButtonTextView()
+                    } label: {
+                        Label(LocalizedStringKey("settings.button_text"), systemImage: "text.bubble")
+                    }
+                    
+                    // Add button background customization option
+                    NavigationLink {
+                        ButtonBackgroundView()
+                    } label: {
+                        Label(LocalizedStringKey("settings.button_background"), systemImage: "photo.fill")
+                    }
+                    
+                    // Add app title customization option
+                    NavigationLink {
+                        TitleTextView()
+                    } label: {
+                        Label(LocalizedStringKey("settings.app_title"), systemImage: "textformat")
+                    }
                 } header: {
                     Text(LocalizedStringKey("settings.preferences"))
                 }

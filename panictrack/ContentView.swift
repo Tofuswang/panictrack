@@ -11,6 +11,8 @@ struct ContentView: View {
     @State private var emojiPosition: CGPoint = .zero
     // Use a state property for vibration setting with a default value
     @State private var isVibrationEnabled = true
+    // 用於存儲自訂標題
+    @State private var customTitle: String = ""
     
     var body: some View {
         NavigationView {
@@ -24,7 +26,7 @@ struct ContentView: View {
                                 .edgesIgnoringSafeArea(.top)
                             
                             HStack {
-                                Text(LocalizedStringKey("content.title"))
+                                Text(customTitle)
                                     .font(.system(size: 33, weight: .bold)) // 減小字體
                                     .foregroundColor(.primary)
                                     .padding(.leading)
@@ -118,6 +120,14 @@ struct ContentView: View {
                 if let userDefaults = UserDefaults(suiteName: "group.com.tofus.panictrack") {
                     // If the key doesn't exist yet, it will default to true
                     self.isVibrationEnabled = userDefaults.object(forKey: "vibrationEnabled") == nil ? true : userDefaults.bool(forKey: "vibrationEnabled")
+                    
+                    // 載入自訂標題
+                    if let savedTitle = userDefaults.string(forKey: "customTitleText") {
+                        self.customTitle = savedTitle
+                    } else {
+                        // 使用本地化預設值
+                        self.customTitle = NSLocalizedString("content.title", comment: "")
+                    }
                 }
             }
         }

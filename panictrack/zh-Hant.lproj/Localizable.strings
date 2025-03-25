@@ -36,11 +36,59 @@
 "settings.stats" = "統計資料";
 "settings.preferences" = "偏好設定";
 "settings.vibration" = "震動效果";
+"settings.emoji" = "表情符號設定";
+"settings.button_text" = "按鈕文字";
+"settings.button_background" = "按鈕背景圖片";
+"settings.app_title" = "應用標題";
+"settings.animation" = "動畫效果";
 "settings.source" = "原始碼";
 "settings.feedback" = "意見回饋";
 "settings.about" = "關於";
 "settings.done" = "完成";
-"settings.version" = "版本 1.0.3";
+"settings.version" = "版本 1.0.4";
+
+// 按鈕背景設定
+"button.background.title" = "按鈕背景設定";
+"button.background.default" = "預設紅色背景";
+"button.background.choose" = "從相簿選擇圖片";
+"button.background.reset" = "恢復預設背景";
+"button.background.success" = "設定成功";
+"button.background.success.message" = "按鈕背景已更新";
+
+// 應用標題設定
+"title.text.header" = "應用標題設定";
+"title.text.input" = "輸入新的應用標題";
+"title.text.save" = "儲存標題";
+"title.text.reset" = "恢復預設標題";
+"title.text.success" = "設定成功";
+"title.text.success.message" = "應用標題已更新";
+
+// 動畫效果設定
+"animation.title" = "動畫效果設定";
+"animation.speed" = "動畫速度";
+"animation.speed.fast" = "快速";
+"animation.speed.normal" = "正常";
+"animation.speed.slow" = "緩慢";
+"animation.multiple" = "多重動畫效果";
+"animation.description" = "允許同時顯示多個動畫，適合快速點擊時使用";
+"animation.reset" = "恢復預設動畫設定";
+
+// 表情符號選擇
+"emoji.selection.title" = "選擇表情符號";
+"emoji.selection.description" = "點擊按鈕時顯示的表情符號";
+"emoji.selection.edit" = "編輯";
+"emoji.selection.done" = "完成";
+"emoji.selection.add.title" = "新增表情符號";
+"emoji.selection.cancel" = "取消";
+"emoji.selection.search" = "搜尋表情符號";
+"emoji.selection.recent" = "最近使用";
+"emoji.selection.no.results" = "沒有符合的表情符號";
+
+// 按鈕文字設定
+"button.text.title" = "自訂按鈕文字";
+"button.text.description" = "設定焦慮按鈕上顯示的文字";
+"button.text.input" = "輸入按鈕文字";
+"button.text.save" = "儲存";
 
 // 匯出功能
 "export.title" = "統計資料";

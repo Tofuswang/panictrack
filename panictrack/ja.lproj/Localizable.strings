@@ -36,11 +36,16 @@
 "settings.stats" = "統計";
 "settings.preferences" = "環境設定";
 "settings.vibration" = "振動効果";
+"settings.emoji" = "絵文字設定";
+"settings.button_text" = "ボタンテキスト";
+"settings.button_background" = "ボタン背景";
+"settings.app_title" = "アプリタイトル";
+"settings.animation" = "アニメーション効果";
 "settings.source" = "ソースコード";
 "settings.feedback" = "フィードバック";
 "settings.about" = "アプリについて";
 "settings.done" = "完了";
-"settings.version" = "バージョン 1.0.3";
+"settings.version" = "バージョン 1.0.4";
 
 // エクスポート機能
 "export.title" = "統計";
@@ -75,3 +80,46 @@
 // Blog Card
 "blog.title" = "豆腐のブログ";
 "blog.description" = "豆腐の考えや創作についてもっと探る";
+
+// ボタン背景設定
+"button.background.title" = "ボタン背景設定";
+"button.background.default" = "デフォルトの赤い背景";
+"button.background.choose" = "ギャラリーから画像を選択";
+"button.background.reset" = "デフォルトの背景にリセット";
+"button.background.success" = "成功";
+"button.background.success.message" = "ボタン背景が更新されました";
+
+// アプリタイトル設定
+"title.text.header" = "アプリタイトル設定";
+"title.text.input" = "新しいアプリタイトルを入力";
+"title.text.save" = "タイトルを保存";
+"title.text.reset" = "デフォルトのタイトルにリセット";
+"title.text.success" = "成功";
+"title.text.success.message" = "アプリタイトルが更新されました";
+
+// アニメーション設定
+"animation.title" = "アニメーション設定";
+"animation.speed" = "アニメーション速度";
+"animation.speed.fast" = "速い";
+"animation.speed.normal" = "標準";
+"animation.speed.slow" = "遅い";
+"animation.multiple" = "複数アニメーション";
+"animation.description" = "複数のアニメーションを同時に表示、高速タップに最適";
+"animation.reset" = "デフォルト設定にリセット";
+
+// 絵文字選択
+"emoji.selection.title" = "絵文字を選択";
+"emoji.selection.description" = "ボタンを押したときに表示される絵文字";
+"emoji.selection.edit" = "編集";
+"emoji.selection.done" = "完了";
+"emoji.selection.add.title" = "絵文字を追加";
+"emoji.selection.cancel" = "キャンセル";
+"emoji.selection.search" = "絵文字を検索";
+"emoji.selection.recent" = "最近使用したもの";
+"emoji.selection.no.results" = "一致する絵文字が見つかりません";
+
+// ボタンテキスト設定
+"button.text.title" = "カスタムボタンテキスト";
+"button.text.description" = "不安ボタンに表示されるテキストを設定";
+"button.text.input" = "ボタンテキストを入力";
+"button.text.save" = "保存";

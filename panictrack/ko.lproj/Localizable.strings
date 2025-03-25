@@ -36,11 +36,16 @@
 "settings.stats" = "통계";
 "settings.preferences" = "환경설정";
 "settings.vibration" = "진동 효과";
+"settings.emoji" = "이모티콘 설정";
+"settings.button_text" = "버튼 텍스트";
+"settings.button_background" = "버튼 배경";
+"settings.app_title" = "앱 제목";
+"settings.animation" = "애니메이션 효과";
 "settings.source" = "소스 코드";
 "settings.feedback" = "피드백";
 "settings.about" = "정보";
 "settings.done" = "완료";
-"settings.version" = "버전 1.0.3";
+"settings.version" = "버전 1.0.4";
 
 // 내보내기 기능
 "export.title" = "통계";
@@ -75,3 +80,46 @@
 // Blog Card
 "blog.title" = "두부의 블로그";
 "blog.description" = "두부의 생각과 창작에 대해 더 알아보기";
+
+// 버튼 배경 설정
+"button.background.title" = "버튼 배경 설정";
+"button.background.default" = "기본 빨간색 배경";
+"button.background.choose" = "갤러리에서 이미지 선택";
+"button.background.reset" = "기본 배경으로 초기화";
+"button.background.success" = "성공";
+"button.background.success.message" = "버튼 배경이 업데이트되었습니다";
+
+// 앱 제목 설정
+"title.text.header" = "앱 제목 설정";
+"title.text.input" = "새 앱 제목 입력";
+"title.text.save" = "제목 저장";
+"title.text.reset" = "기본 제목으로 초기화";
+"title.text.success" = "성공";
+"title.text.success.message" = "앱 제목이 업데이트되었습니다";
+
+// 애니메이션 설정
+"animation.title" = "애니메이션 설정";
+"animation.speed" = "애니메이션 속도";
+"animation.speed.fast" = "빠름";
+"animation.speed.normal" = "보통";
+"animation.speed.slow" = "느림";
+"animation.multiple" = "다중 애니메이션";
+"animation.description" = "다중 애니메이션을 동시에 표시, 빠른 탭에 적합";
+"animation.reset" = "기본 설정으로 초기화";
+
+// 이모티콘 선택
+"emoji.selection.title" = "이모티콘 선택";
+"emoji.selection.description" = "버튼을 누를 때 표시되는 이모티콘";
+"emoji.selection.edit" = "편집";
+"emoji.selection.done" = "완료";
+"emoji.selection.add.title" = "이모티콘 추가";
+"emoji.selection.cancel" = "취소";
+"emoji.selection.search" = "이모티콘 검색";
+"emoji.selection.recent" = "최근 사용";
+"emoji.selection.no.results" = "일치하는 이모티콘이 없습니다";
+
+// 버튼 텍스트 설정
+"button.text.title" = "사용자 정의 버튼 텍스트";
+"button.text.description" = "불안 버튼에 표시되는 텍스트 설정";
+"button.text.input" = "버튼 텍스트 입력";
+"button.text.save" = "저장";

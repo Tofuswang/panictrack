@@ -36,11 +36,16 @@
 "settings.stats" = "Statistics";
 "settings.preferences" = "Preferences";
 "settings.vibration" = "Vibration Effect";
+"settings.emoji" = "Emoji Settings";
+"settings.button_text" = "Button Text";
+"settings.button_background" = "Button Background";
+"settings.app_title" = "App Title";
+"settings.animation" = "Animation Effects";
 "settings.source" = "Source Code";
 "settings.feedback" = "Feedback";
 "settings.about" = "About";
 "settings.done" = "Done";
-"settings.version" = "Version 1.0.3";
+"settings.version" = "Version 1.0.4";
 
 // Export Features
 "export.title" = "Statistics";
@@ -75,3 +80,46 @@
 // Blog Card
 "blog.title" = "Tofus' Blog";
 "blog.description" = "Explore more thoughts and creations from Tofus";
+
+// Button Background Settings
+"button.background.title" = "Button Background Settings";
+"button.background.default" = "Default Red Background";
+"button.background.choose" = "Choose Image from Gallery";
+"button.background.reset" = "Reset to Default Background";
+"button.background.success" = "Success";
+"button.background.success.message" = "Button background updated";
+
+// App Title Settings
+"title.text.header" = "App Title Settings";
+"title.text.input" = "Enter new app title";
+"title.text.save" = "Save Title";
+"title.text.reset" = "Reset to Default Title";
+"title.text.success" = "Success";
+"title.text.success.message" = "App title updated";
+
+// Animation Settings
+"animation.title" = "Animation Settings";
+"animation.speed" = "Animation Speed";
+"animation.speed.fast" = "Fast";
+"animation.speed.normal" = "Normal";
+"animation.speed.slow" = "Slow";
+"animation.multiple" = "Multiple Animations";
+"animation.description" = "Allow multiple animations to display simultaneously, ideal for rapid clicking";
+"animation.reset" = "Reset to Default";
+
+// Emoji Selection
+"emoji.selection.title" = "Select Emoji";
+"emoji.selection.description" = "Emoji shown when button is pressed";
+"emoji.selection.edit" = "Edit";
+"emoji.selection.done" = "Done";
+"emoji.selection.add.title" = "Add Emoji";
+"emoji.selection.cancel" = "Cancel";
+"emoji.selection.search" = "Search Emoji";
+"emoji.selection.recent" = "Recently Used";
+"emoji.selection.no.results" = "No matching emoji found";
+
+// Button Text Settings
+"button.text.title" = "Custom Button Text";
+"button.text.description" = "Set the text displayed on the anxiety button";
+"button.text.input" = "Enter button text";
+"button.text.save" = "Save";

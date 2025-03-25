@@ -36,11 +36,16 @@
 "settings.stats" = "统计数据";
 "settings.preferences" = "偏好设置";
 "settings.vibration" = "震动效果";
+"settings.emoji" = "表情符号设置";
+"settings.button_text" = "按钮文字";
+"settings.button_background" = "按钮背景图片";
+"settings.app_title" = "应用标题";
+"settings.animation" = "动画效果";
 "settings.source" = "源代码";
 "settings.feedback" = "意见反馈";
 "settings.about" = "关于";
 "settings.done" = "完成";
-"settings.version" = "版本 1.0.3";
+"settings.version" = "版本 1.0.4";
 
 // 导出功能
 "export.title" = "统计数据";
@@ -75,3 +80,46 @@
 // Blog Card
 "blog.title" = "王豆腐的博客";
 "blog.description" = "探索更多关于王豆腐的想法和创作";
+
+// 按钮背景设置
+"button.background.title" = "按钮背景设置";
+"button.background.default" = "默认红色背景";
+"button.background.choose" = "从相册选择图片";
+"button.background.reset" = "重置为默认背景";
+"button.background.success" = "操作成功";
+"button.background.success.message" = "按钮背景已更新";
+
+// 应用标题设置
+"title.text.header" = "应用标题设置";
+"title.text.input" = "输入新的应用标题";
+"title.text.save" = "保存标题";
+"title.text.reset" = "重置为默认标题";
+"title.text.success" = "操作成功";
+"title.text.success.message" = "应用标题已更新";
+
+// 动画设置
+"animation.title" = "动画效果设置";
+"animation.speed" = "动画速度";
+"animation.speed.fast" = "快速";
+"animation.speed.normal" = "正常";
+"animation.speed.slow" = "缓慢";
+"animation.multiple" = "多重动画效果";
+"animation.description" = "允许同时显示多个动画，适合快速点击时使用";
+"animation.reset" = "恢复默认设置";
+
+// 表情符号选择
+"emoji.selection.title" = "选择表情符号";
+"emoji.selection.description" = "点击按钮时显示的表情符号";
+"emoji.selection.edit" = "编辑";
+"emoji.selection.done" = "完成";
+"emoji.selection.add.title" = "添加表情符号";
+"emoji.selection.cancel" = "取消";
+"emoji.selection.search" = "搜索表情符号";
+"emoji.selection.recent" = "最近使用";
+"emoji.selection.no.results" = "没有找到匹配的表情符号";
+
+// 按钮文字设置
+"button.text.title" = "自定义按钮文字";
+"button.text.description" = "设置焦虑按钮上显示的文字";
+"button.text.input" = "输入按钮文字";
+"button.text.save" = "保存";
