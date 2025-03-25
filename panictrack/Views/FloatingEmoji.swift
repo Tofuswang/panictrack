@@ -86,6 +86,9 @@ struct FloatingEmojiContainer: View {
         .background(Color.clear)
         .onChange(of: isVisible) { newValue in
             if newValue {
+                // 確保每次觸發前先載入最新的表情符號設定
+                loadSelectedEmoji()
+                
                 // Add a new animation when button is pressed
                 animationCounter += 1
                 
@@ -116,10 +119,20 @@ struct FloatingEmojiContainer: View {
         }
         .onAppear {
             // Load custom emoji from UserDefaults
-            if let userDefaults = UserDefaults(suiteName: "group.com.tofus.panictrack"),
-               let customEmoji = userDefaults.string(forKey: "selectedEmoji") {
+            loadSelectedEmoji()
+        }
+    }
+    
+    // 抽取載入表情符號的方法，確保每次都能獲取最新設定
+    private func loadSelectedEmoji() {
+        if let userDefaults = UserDefaults(suiteName: "group.com.tofus.panictrack") {
+            if let customEmoji = userDefaults.string(forKey: "selectedEmoji") {
                 selectedEmoji = customEmoji
+            } else {
+                // 如果沒有設定，使用預設表情符號
+                selectedEmoji = "🥺"
             }
         }
     }
-}
+    }
+
